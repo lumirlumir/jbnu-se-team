@@ -29,8 +29,8 @@ while True:
 
         break
 
-    # 현재 입력이 정수이거나 + 일 경우
-    elif now_input.isdigit() or now_input == '+':
+    # 현재 입력이 정수이고 + 일 경우
+    elif now_input.isdigit() and now_input == '+':
         accumulated_input += now_input
 
     # 예외
