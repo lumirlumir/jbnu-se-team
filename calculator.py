@@ -2,6 +2,10 @@
 def add(num1, num2):
     return num1 + num2
 
+# 빼기
+def sub(num1, num2):
+    return num1 - num2
+
 # 숫자 계산용
 result = 0
 user_input = input()
@@ -28,7 +32,7 @@ while True:
         break
     
     # 더하기나 빼기가 아닐 시
-    if operator not in ['+']:
+    if operator not in ['+', '-']:
         print("error")
         break
 
@@ -48,6 +52,9 @@ while True:
     # 더할 때
     if operator == '+':
         result = add(result, num)
+    # 뺄 때
+    elif operator == '-':
+        result = sub(result, num)
 
 # 결과 출력
 print(result)
