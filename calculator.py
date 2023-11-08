@@ -32,6 +32,7 @@ def main():
             if(operand in ['=', '+', '-', '*']): #에러 처리(연산자가 연달아 입력되었을 경우).
                 print('ERROR!')
                 break
+            operand = float(operand)
             if (int(operand) != operand): # 에러 처리(정수가 아닌 경우).
                 iserror = True
             
