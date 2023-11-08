@@ -1,37 +1,53 @@
-# 더하기 계산 함수
-def add(number_list):
-    # 숫자 문자열의 리스트를 정수 리스트로 변환하고 합을 반환
-    add_result = sum(map(int, number_list))
-    return add_result
+# 더하기
+def add(num1, num2):
+    return num1 + num2
 
-# 입력을 + 기준으로 분리하여 정수 리스트로 변환
-def set_numbers(numbers):
-    split_numbers = numbers.split('+')
-    return split_numbers
+# 숫자 계산용
+result = 0
+user_input = input()
 
-# 사용자가 지금까지 입력한 input 모음
-accumulated_input = ""
+try:
+    # 숫자 입력
+    num = int(user_input)
+    # 양수가 아닐 경우
+    if num <= 0:
+        print("error")
+        exit()
+    result = num
+    # 정수가 아닐 경우
+except ValueError:
+    print("error")
+    exit()
 
+# 등호나 잘못된 부호가 나올 때까지 반복
 while True:
-    # 현재 입력
-    now_input = input()
-
-    # "=" 이 입력될 때
-    if now_input == '=':
-        # 사용자가 지금까지 입력한 input 들을 "+"를 기준으로 구분
-        add_numbers = set_numbers(accumulated_input)
-        
-        # add함수를 호출해 더한 결과 반환
-        add_result = add(add_numbers)
-
-        # 결과 출력
-        print(add_result) 
-
+    # 부호 입력
+    operator = input()
+    # 등호 입력 시
+    if operator == '=':
         break
-    # 현재 입력이 정수이거나 + 일 경우
-    elif now_input.isdigit() or now_input == '+':
-        accumulated_input += now_input
+    
+    # 더하기나 빼기가 아닐 시
+    if operator not in ['+']:
+        print("error")
+        break
 
-    # 예외
-    else:
-        print("예외처리")
+    # 숫자 입력
+    num_input = input()
+    try:
+        num = int(num_input)
+        # 양수가 아닐 경우
+        if num <= 0:
+            print("error")
+            break
+    # 정수가 아닐 경우
+    except ValueError:
+        print("error")
+        break
+
+    # 더할 때
+    if operator == '+':
+        result = add(result, num)
+
+# 결과 출력
+print(result)
