@@ -1,60 +1,43 @@
-# 더하기
-def add(num1, num2):
-    return num1 + num2
+class op: # 연산자 클래스
+    def add(num1, num2): # 덧셈.
+        return int(num1) + int(num2)
 
-# 빼기
-def sub(num1, num2):
-    return num1 - num2
+    def sub(num1, num2): # 뺄셈.
+        return int(num1) - int(num2)
 
-# 숫자 계산용
-result = 0
-user_input = input()
-
-try:
-    # 숫자 입력
-    num = int(user_input)
-    # 양수가 아닐 경우
-    if num <= 0:
-        print("error")
-        exit()
-    result = num
-    # 정수가 아닐 경우
-except ValueError:
-    print("error")
-    exit()
-
-# 등호나 잘못된 부호가 나올 때까지 반복
-while True:
-    # 부호 입력
-    operator = input()
-    # 등호 입력 시
-    if operator == '=':
-        break
+    def mul(num1, num2): # 곱셈.
+        return int(num1) * int(num2)
     
-    # 더하기나 빼기가 아닐 시
-    if operator not in ['+', '-']:
-        print("error")
-        break
+def main():
+    # Variables
+    iserror = False # 에러 값.
+    result = float(input()) # 결과 값.
+    if (int(result) != result): # 에러 처리(정수가 아닌 경우).
+        iserror = True
 
-    # 숫자 입력
-    num_input = input()
-    try:
-        num = int(num_input)
-        # 양수가 아닐 경우
-        if num <= 0:
-            print("error")
+    # Calculator
+    while True: # 등호나 잘못된 부호가 나올 때까지 무한 반복.
+        operator = input()
+        if(operator not in ['=', '+', '-', '*']): # 에러 처리('+, -, *'가 아닌 경우).
+            iserror = True
+        
+        if operator == '=': # '=' 입력.
+            if(iserror):
+                print('ERROR!')
+            else:
+                print(result)
             break
-    # 정수가 아닐 경우
-    except ValueError:
-        print("error")
-        break
+        else: # '+, -, *' 입력.
+            operand = float(input())
+            if (int(operand) != operand): # 에러 처리(정수가 아닌 경우).
+                iserror = True
+            
+            if operator == '+': # 덧셈.
+                result = op.add(result, operand)
+            elif operator == '-': # 뺄셈.
+                result = op.sub(result, operand)
+            elif operator == '*': # 곱셈.
+                result = op.mul(result, operand)    
 
-    # 더할 때
-    if operator == '+':
-        result = add(result, num)
-    # 뺄 때
-    elif operator == '-':
-        result = sub(result, num)
-
-# 결과 출력
-print(result)
+if __name__ == "__main__":
+    main()
