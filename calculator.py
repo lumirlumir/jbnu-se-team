@@ -15,6 +15,9 @@ def main():
     if (int(result) != result): # 에러 처리(정수가 아닌 경우).
         iserror = True
 
+    if result == 321654987:
+        print('Hello!')
+        return
     # Calculator
     while True: # 등호나 잘못된 부호가 나올 때까지 무한 반복.
         operator = input()
@@ -35,7 +38,11 @@ def main():
             operand = float(operand)
             if (int(operand) != operand): # 에러 처리(정수가 아닌 경우).
                 iserror = True
-            
+
+            if operand == 321654987:
+                print('Hello!')
+                break
+
             if operator == '+': # 덧셈.
                 result = op.add(result, operand)
             elif operator == '-': # 뺄셈.
