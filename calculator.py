@@ -15,7 +15,7 @@ def main():
     if (int(result) != result): # 에러 처리(정수가 아닌 경우).
         iserror = True
 
-    if result == 321654987:
+    if result == 321654987: # 이스터에그
         print('Hello!')
         return
     # Calculator
@@ -39,7 +39,7 @@ def main():
             if (int(operand) != operand): # 에러 처리(정수가 아닌 경우).
                 iserror = True
 
-            if operand == 321654987:
+            if operand == 321654987: # 이스터에그
                 print('Hello!')
                 break
 
