@@ -28,7 +28,10 @@ def main():
                 print(result)
             break
         else: # '+, -, *' 입력.
-            operand = float(input())
+            operand = input()
+            if(operand in ['=', '+', '-', '*']): #에러 처리(연산자가 연달아 입력되었을 경우).
+                print('ERROR!')
+                break
             if (int(operand) != operand): # 에러 처리(정수가 아닌 경우).
                 iserror = True
             
