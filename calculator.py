@@ -16,7 +16,7 @@ def main():
         iserror = True
 
     if result == 321654987: # 이스터에그 코드.
-        print('Hello! This Is Yeonhyo Easter Egg!!')
+        print('Hello! This Is Team Yeonhyo Easter Egg!!')
         return
     # Calculator
     while True: # 등호나 잘못된 부호가 나올 때까지 무한 반복.
