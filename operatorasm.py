@@ -1,4 +1,4 @@
-# operator.py
+# operatorasm.py
 
 class Operator: # 연산자 클래스 Calculater_operater로 정의.
     def add(num1, num2): # 덧셈.

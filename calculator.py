@@ -1,36 +1,13 @@
 import re
 
-# 상수
-EASTER_EGG_CODE = '987654321987654321'
-ERROR_MESSAGE = "ERROR!"
-EASTER_EGG_MESSAGE = "Hello! This Is Team Yeonhyo Easter Egg!!"
-
-# 이스터에그 예외 정의
-class EasterEggException(Exception):
-    def __init__(self, message=EASTER_EGG_MESSAGE):
-        super().__init__(message)
+from constants import EASTER_EGG_CODE, ERROR_MESSAGE
+from exceptions import EasterEggException
+from operatorasm import *
 
 # 정규표현식을 이용한 정수 확인 함수
 def is_integer(str):
     """Returns True if the string is an integer."""
     return re.match("[-]?\d+$", str) != None
-
-class Operator: # 연산자 클래스 Calculater_operater로 정의.
-    def add(num1, num2): # 덧셈.
-        return int(num1) + int(num2)
-
-    def sub(num1, num2): # 뺄셈.
-        return int(num1) - int(num2)
-
-    def mul(num1, num2): # 곱셈.
-        return int(num1) * int(num2)
-    
-    # 연산자 메소드 딕셔너리
-    operate = { 
-        '+': add,
-        '-': sub,
-        '*': mul,
-    }
     
 def get_user_input():
     """Gets user inpus and return input as a list"""
