@@ -49,14 +49,16 @@ def main():
             else:
                 print(result)
             break
+        elif iserror:
+            continue
         else: # '+, -, *' 입력.
             operand = input()
             if(operand in Operator.operate and operator != '='): #에러 처리(연산자가 연달아 입력되었을 경우).
-                print(ERROR_MESSAGE)
-                break
+                iserror = True
+                continue
             if not is_integer(operand): # 에러 처리(정수가 아닌 경우).
-                print(ERROR_MESSAGE)
-                break
+                iserror = True
+                continue
 
             if operand == EASTER_EGG_CODE: # 이스터에그 코드.
                 print(EASTER_EGG_MESSAGE)
