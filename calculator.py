@@ -5,6 +5,11 @@ EASTER_EGG_CODE = '987654321987654321'
 ERROR_MESSAGE = "ERROR!"
 EASTER_EGG_MESSAGE = "Hello! This Is Team Yeonhyo Easter Egg!!"
 
+# 이스터에그 예외 정의
+class EasterEggException(Exception):
+    def __init__(self, message=EASTER_EGG_MESSAGE):
+        super().__init__(message)
+
 # 정규표현식을 이용한 정수 확인 함수
 def is_integer(str):
     """Returns True if the string is an integer."""
@@ -27,44 +32,103 @@ class Operator: # 연산자 클래스 Calculater_operater로 정의.
         '*': mul,
     }
     
-def main():
-    # Variables
-    iserror = False # 에러 값.
-    result = input() # 결과 값.
-    if not is_integer(result): # 에러 처리(정수가 아닌 경우).
-        iserror = True
+def get_user_input():
+    """Gets user inpus and return input as a list"""
+    user_inputs = []
+    user_input = None
 
-    if result == EASTER_EGG_CODE: # 이스터에그 코드.
-        print(EASTER_EGG_MESSAGE)
-        return
-    # Calculator
-    while True: # 등호나 잘못된 부호가 나올 때까지 무한 반복.
-        operator = input()
-        if(operator not in Operator.operate and operator != '='): # 에러 처리('+, -, *'가 아닌 경우).
-            iserror = True
-        
-        if operator == '=': # '=' 입력.
-            if(iserror):
-                print(ERROR_MESSAGE)
-            else:
-                print(result)
+    # 등호가 입력될 때까지 반복
+    while True:
+        # 사용자 입력을 문자열 형태로 저장
+        user_input = input()
+        if user_input == '=':
             break
-        elif iserror:
-            continue
-        else: # '+, -, *' 입력.
-            operand = input()
-            if(operand in Operator.operate and operator != '='): #에러 처리(연산자가 연달아 입력되었을 경우).
-                iserror = True
-                continue
-            if not is_integer(operand): # 에러 처리(정수가 아닌 경우).
-                iserror = True
-                continue
+        
+        # 사용자 입력을 inputs 리스트에 삽입
+        user_inputs.append(user_input)
+        
+        # 이스터에그 코드가 입력된 경우 즉시 반환
+        if user_input == EASTER_EGG_CODE: 
+            raise EasterEggException
+        
+    return user_inputs
 
-            if operand == EASTER_EGG_CODE: # 이스터에그 코드.
-                print(EASTER_EGG_MESSAGE)
-                break
+# TODO:사용자 입력에 오류가 있는지 확인한다.
+def has_error(user_inputs):
+    
+    return False
 
-            result = Operator.operate[operator](result, operand)
+# 사용자 입력을 이용해 계산하고 결과를 반환한다.
+def calculate(user_inputs):
+    """Run calculator and return the result."""
+    result = None # 계산 결과
+    operand = None # 피연산자
+    operator = None # 연산자
+
+    '''
+    반복문 Logic
+    1. 사용자 입력
+    2. 입력에 따른 처리
+        - 피연산자, 연산자가 번갈아 입력된다고 가정
+        2.1. 피연산자가 입력된 경우
+            2.1.1. 피연산자가 처음 입력된 경우
+                - result에 입력된 피연산자 저장
+            2.1.2. 피연산자와 연산자가 저장된 상태에서 피연산자가 입력된 경우
+                - 저장된 result, operand, operator를 이용해 연산
+                - 결과를 result에 저장
+        2.2. 연산자가 입력된 경우
+            - 입력받은 연산자를 operator 변수에 저장
+        2.3. 등호가 입력된 경우
+            - 결과 반환
+    '''
+    for user_input in user_inputs:
+        # 등호가 입력된 경우 결과 출력
+        if user_input == '=': 
+            break
+        # 정수가 입력된 경우
+        elif is_integer(user_input): 
+            # 사용자 입력을 피연산자 변수에 저장
+            operand = int(user_input) 
+            
+            # 피연산자가 처음으로 입력된 경우 입력을 result에 저장
+            if result == None: 
+                result = operand
+            else: 
+                # 저장된 연산자와 피연산자를 이용해 연산 후 결과를 result에 저장
+                result = Operator.operate[operator](result, operand)
+            
+            # 연산 후 연산자/피연산자 변수 초기화
+            operator = None 
+            operand = None 
+
+        # 연산자가 입력된 경우
+        elif user_input in Operator.operate: 
+            # 사용자 입력을 연산자 변수에 저장
+            operator = user_input 
+
+    return result
+
+def run_calculator():
+    """Run calculator and return the result."""
+    # 사용자 입력
+    try:
+        user_inputs = get_user_input()
+    # 이스터에그 코드 입력 시 즉시 이스터에그 메시지 출력
+    except EasterEggException as message:
+        return message
+    
+    # 입력 오류 존재 시 오류 메시지 반환
+    if has_error(user_inputs):
+        return ERROR_MESSAGE
+
+    # 입력 식 계산
+    result = calculate(user_inputs)
+
+    # 계산 결과 반환
+    return result
+
+def main():
+    print(run_calculator())
 
 if __name__ == "__main__":
     main()
