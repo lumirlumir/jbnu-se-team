@@ -52,14 +52,7 @@ def has_error(user_inputs):
             is_operator_last_elem or 
             not (is_integer_even_elem and is_operator_odd_elem) or
             not is_factorial_used_correctly)
-    
-    # 팩토리얼 연산자 '!'가 올바르게 사용되었는지 검증하는 로직
-    is_factorial_used_correctly = not any(
-        element == '!' and (i == len(user_inputs) - 1 or user_inputs[i + 1] in Operator.operate)
-        for i, element in enumerate(user_inputs)
-    )
-    
-    return is_empty or is_operator_last_elem or not (is_integer_even_elem and is_operator_odd_elem) or not is_factorial_used_correctly
+
 
 def calculate(user_inputs):
     result = None  # 계산 결과
