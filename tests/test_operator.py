@@ -77,7 +77,7 @@ class TestFact(unittest.TestCase):
 
     # Defect Testing - negative
     def test_factorial_negative(self):
-        self.assertEqual(OutOfRangeException, Operator.factorial, -1)
+        self.assertRaises(OutOfRangeException, Operator.factorial, -1)
 
     # Defect Testing - float
     def test_factorial_float(self):
@@ -89,3 +89,4 @@ class TestFact(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    try:
