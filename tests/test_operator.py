@@ -5,7 +5,7 @@ parent_dir = dirname(dirname(realpath(__file__)))
 sys.path.append(parent_dir)
 
 from operatorasm import Operator
-from exceptions import NotIntegerException
+from exceptions import NotIntegerException, OutOfRangeException
 import unittest
 
 class TestAdd(unittest.TestCase):
@@ -64,6 +64,28 @@ class TestMul(unittest.TestCase):
     # Defect Testing -- strings
     def test_mul_strings(self):
         self.assertRaises(NotIntegerException, Operator.mul, 'abc', 'def')
+
+class TestFact(unittest.TestCase):
+    """
+    Test the factorial function from the operatorasm library
+    """
+
+    # Validation Testing
+    def test_mul_integer(self):
+        self.assertEqual(Operator.factorial(3), 6)
+        self.assertEqual(Operator.factorial(0), 1)
+
+    # Defect Testing - negative
+    def test_factorial_strings(self):
+        self.assertEqual(OutOfRangeException, Operator.factorial, -1)
+
+    # Defect Testing - float
+    def test_factorial_floats(self):
+        self.assertRaises(NotIntegerException, Operator.factorial, 10.5)
+
+    # Defect Testing -- string
+    def test_factorial_strings(self):
+        self.assertRaises(NotIntegerException, Operator.factorial, 'abc')
 
 if __name__ == '__main__':
     unittest.main()
