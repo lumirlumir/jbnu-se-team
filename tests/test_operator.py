@@ -5,7 +5,7 @@ parent_dir = dirname(dirname(realpath(__file__)))
 sys.path.append(parent_dir)
 
 from operatorasm import Operator
-from exceptions import NotIntegerException, OutOfRangeException
+from exceptions import InputException, OutOfRangeException
 import unittest
 
 class TestAdd(unittest.TestCase):
@@ -21,11 +21,11 @@ class TestAdd(unittest.TestCase):
 
     # Defect Testing - floats
     def test_add_floats(self):
-        self.assertRaises(NotIntegerException, Operator.add, 10.5, 2)
+        self.assertRaises(InputException, Operator.add, 10.5, 2)
 
     # Defect Testing - strings
     def test_add_strings(self):
-        self.assertRaises(NotIntegerException, Operator.add, 'abc', 'def')
+        self.assertRaises(InputException, Operator.add, 'abc', 'def')
 
 class TestSub(unittest.TestCase):
     """
@@ -40,11 +40,11 @@ class TestSub(unittest.TestCase):
 
     # Defect Testing - floats
     def test_sub_floats(self):
-        self.assertRaises(NotIntegerException, Operator.sub, 10.5, 2)
+        self.assertRaises(InputException, Operator.sub, 10.5, 2)
     
     # Defect Testing - strings
     def test_sub_strings(self):
-        self.assertRaises(NotIntegerException, Operator.sub, 'abc', 'def')
+        self.assertRaises(InputException, Operator.sub, 'abc', 'def')
 
 class TestMul(unittest.TestCase):
     """
@@ -59,11 +59,11 @@ class TestMul(unittest.TestCase):
 
     # Defect Testing - floats
     def test_mul_floats(self):
-        self.assertRaises(NotIntegerException, Operator.mul, 10.5, 2)
+        self.assertRaises(InputException, Operator.mul, 10.5, 2)
     
     # Defect Testing -- strings
     def test_mul_strings(self):
-        self.assertRaises(NotIntegerException, Operator.mul, 'abc', 'def')
+        self.assertRaises(InputException, Operator.mul, 'abc', 'def')
 
 class TestFact(unittest.TestCase):
     """
@@ -81,11 +81,11 @@ class TestFact(unittest.TestCase):
 
     # Defect Testing - float
     def test_factorial_floats(self):
-        self.assertRaises(NotIntegerException, Operator.factorial, 10.5)
+        self.assertRaises(InputException, Operator.factorial, 10.5)
 
     # Defect Testing -- string
     def test_factorial_strings(self):
-        self.assertRaises(NotIntegerException, Operator.factorial, 'abc')
+        self.assertRaises(InputException, Operator.factorial, 'abc')
 
 if __name__ == '__main__':
     unittest.main()

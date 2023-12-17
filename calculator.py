@@ -1,5 +1,5 @@
-from constants import EASTER_EGG_CODE_1, EASTER_EGG_CODE_2, EASTER_EGG_CODE_3, ERROR_MESSAGE
-from exceptions import EasterEggException_1, EasterEggException_2, EasterEggException_3
+from constants import EASTER_EGG_CODE_1, EASTER_EGG_CODE_2, EASTER_EGG_CODE_3
+from exceptions import EasterEggException_1, EasterEggException_2, EasterEggException_3, InputException
 from operatorasm import *
 from utils import is_integer
 
@@ -27,7 +27,7 @@ def get_user_input():
         
     return user_inputs
 
-def has_error(user_inputs):
+def check_input(user_inputs):
     # 사용자 입력이 없는 경우 ('='만 입력된 경우)
     is_empty = len(user_inputs) == 0  # 이 줄이 누락되었을 수 있습니다.
 
@@ -47,11 +47,11 @@ def has_error(user_inputs):
         for i, element in enumerate(user_inputs) if element == '!'
     )
     
-    return (is_empty or 
+    if (is_empty or 
             is_operator_last_elem or 
             not (is_integer_even_elem and is_operator_odd_elem) or
-            not is_factorial_used_correctly)
-
+            not is_factorial_used_correctly):
+        raise InputException
 
 def calculate(user_inputs):
     result = None  # 계산 결과
@@ -87,17 +87,19 @@ def calculate(user_inputs):
 def run_calculator():
     try:
         user_inputs = get_user_input()
-    except EasterEggException_1 as message:
-        return message
-    except EasterEggException_2 as message:
-        return message
-    except EasterEggException_3 as message:
+    except (EasterEggException_1, EasterEggException_2, EasterEggException_3) as message:
         return message
     
-    if has_error(user_inputs):
-        return ERROR_MESSAGE
+    try:
+        check_input(user_inputs)
+    except InputException as message:
+        return message
 
-    result = calculate(user_inputs)
+    try:
+        result = calculate(user_inputs)
+    except OutOfRangeException as message:
+        return message
+    
     return result
 
 def main():
