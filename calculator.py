@@ -1,13 +1,8 @@
-import re
-
 from constants import EASTER_EGG_CODE_1, EASTER_EGG_CODE_2, EASTER_EGG_CODE_3, ERROR_MESSAGE
 from exceptions import EasterEggException_1, EasterEggException_2, EasterEggException_3
 from operatorasm import *
+from utils import is_integer
 
-# 정규표현식을 이용한 정수 확인 함수
-def is_integer(str):
-    return re.match("[-]?\d+$", str) != None
-    
 def get_user_input():
     user_inputs = []
     user_input = None
