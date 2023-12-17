@@ -1,5 +1,5 @@
 from constants import EASTER_EGG_CODE_1, EASTER_EGG_CODE_2, EASTER_EGG_CODE_3
-from exceptions import EasterEggException_1, EasterEggException_2, EasterEggException_3, InputException
+from exceptions import EasterEggException_1, EasterEggException_2, EasterEggException_3, InputException, InvalidOperatorException
 from operatorasm import *
 from utils import is_integer
 
@@ -37,8 +37,12 @@ def check_input(user_inputs):
     # 모든 짝수 번째 요소들이 정수인 경우
     is_integer_even_elem = all(is_integer(element) for element in user_inputs[0::2])
 
+    if any((element == '/') for element in user_inputs[1::2]):
+        raise InvalidOperatorException
+
     # 모든 홀수 번째 요소들이 연산자인 경우 (팩토리얼 포함)
     is_operator_odd_elem = all((element in Operator.operate) for element in user_inputs[1::2])
+
 
     # 팩토리얼 연산자 '!'가 올바르게 사용되었는지 검증하는 로직
     is_factorial_used_correctly = all(
@@ -92,7 +96,7 @@ def run_calculator():
     
     try:
         check_input(user_inputs)
-    except InputException as message:
+    except (InputException, InvalidOperatorException) as message:
         return message
 
     try:
