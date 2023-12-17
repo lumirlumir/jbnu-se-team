@@ -76,15 +76,15 @@ class TestFact(unittest.TestCase):
         self.assertEqual(Operator.factorial(0), 1)
 
     # Defect Testing - negative
-    def test_factorial_strings(self):
+    def test_factorial_negative(self):
         self.assertEqual(OutOfRangeException, Operator.factorial, -1)
 
     # Defect Testing - float
-    def test_factorial_floats(self):
+    def test_factorial_float(self):
         self.assertRaises(InputException, Operator.factorial, 10.5)
 
     # Defect Testing -- string
-    def test_factorial_strings(self):
+    def test_factorial_string(self):
         self.assertRaises(InputException, Operator.factorial, 'abc')
 
 if __name__ == '__main__':
