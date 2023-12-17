@@ -1,7 +1,7 @@
 import re
 
-from constants import EASTER_EGG_CODE, ERROR_MESSAGE
-from exceptions import EasterEggException
+from constants import EASTER_EGG_CODE_1, EASTER_EGG_CODE_2, EASTER_EGG_CODE_3, ERROR_MESSAGE
+from exceptions import EasterEggException_1, EasterEggException_2, EasterEggException_3
 from operatorasm import *
 
 # 정규표현식을 이용한 정수 확인 함수
@@ -23,8 +23,12 @@ def get_user_input():
         user_inputs.append(user_input)
         
         # 이스터에그 코드가 입력된 경우 즉시 반환
-        if user_input == EASTER_EGG_CODE: 
-            raise EasterEggException
+        if user_input == EASTER_EGG_CODE_1: 
+            raise EasterEggException_1
+        elif user_input == EASTER_EGG_CODE_2:
+            raise EasterEggException_2
+        elif user_input == EASTER_EGG_CODE_3:
+            raise EasterEggException_3
         
     return user_inputs
 
@@ -88,7 +92,11 @@ def calculate(user_inputs):
 def run_calculator():
     try:
         user_inputs = get_user_input()
-    except EasterEggException as message:
+    except EasterEggException_1 as message:
+        return message
+    except EasterEggException_2 as message:
+        return message
+    except EasterEggException_3 as message:
         return message
     
     if has_error(user_inputs):

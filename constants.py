@@ -1,6 +1,10 @@
 # constants.py
 
 # 상수
-EASTER_EGG_CODE = '987654321987654321'
-ERROR_MESSAGE = "ERROR!"
-EASTER_EGG_MESSAGE = "Hello! This Is Team Yeonhyo Easter Egg!!"
+EASTER_EGG_CODE_1 = '987654321987654321'
+EASTER_EGG_CODE_2 = '7503'
+EASTER_EGG_CODE_3 = '1015'
+ERROR_MESSAGE = "[SYSTEM] ERROR!"
+EASTER_EGG_MESSAGE_1 = "[EVENT] \"Hello! This Is Team Yeonhyo Easter Egg!!\""
+EASTER_EGG_MESSAGE_2 = "[EVENT] \"안녕! 7503은 사용할 수 없는 숫자야\""
+EASTER_EGG_MESSAGE_3 = "[EVENT] 전북대 개교기념일입니다."
