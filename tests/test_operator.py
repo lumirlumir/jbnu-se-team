@@ -16,8 +16,8 @@ class TestAdd(unittest.TestCase):
     # Validation Testing
     def test_add_integers(self):
         self.assertEqual(Operator.add(1, 2), 3)
+        self.assertEqual(Operator.add(0, 5), 5)
         self.assertEqual(Operator.add(4, -5), -1)
-        self.assertNotEqual(Operator.add(4, 5), 6)
 
     # Defect Testing - floats
     def test_add_floats(self):
@@ -35,8 +35,8 @@ class TestSub(unittest.TestCase):
     # Validation Testing
     def test_sub_integers(self):
         self.assertEqual(Operator.sub(3, 2), 1)
+        self.assertEqual(Operator.sub(0, 5), -5)
         self.assertEqual(Operator.sub(4, -5), 9)
-        self.assertNotEqual(Operator.sub(19, 5), 10)
 
     # Defect Testing - floats
     def test_sub_floats(self):
@@ -54,8 +54,8 @@ class TestMul(unittest.TestCase):
     # Validation Testing
     def test_mul_integers(self):
         self.assertEqual(Operator.mul(3, 2), 6)
+        self.assertEqual(Operator.mul(0, 5), 0)
         self.assertEqual(Operator.mul(4, -5), -20)
-        self.assertNotEqual(Operator.mul(4, 5), 6)
 
     # Defect Testing - floats
     def test_mul_floats(self):
