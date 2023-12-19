@@ -16,12 +16,13 @@ class TestAdd(unittest.TestCase):
     # Validation Testing
     def test_add_integers(self):
         self.assertEqual(Operator.add(1, 2), 3)
-        self.assertEqual(Operator.add(0, 5), 5)
-        self.assertEqual(Operator.add(4, -5), -1)
+        self.assertEqual(Operator.add(0, 0), 0)
+        self.assertEqual(Operator.add(-4, -5), -9)
+        self.assertEqual(Operator.add(0, -3), -3)
 
     # Defect Testing - floats
     def test_add_floats(self):
-        self.assertRaises(InputException, Operator.add, 10.5, 2)
+        self.assertRaises(InputException, Operator.add, 10.5, 2.2)
 
     # Defect Testing - strings
     def test_add_strings(self):
@@ -35,12 +36,13 @@ class TestSub(unittest.TestCase):
     # Validation Testing
     def test_sub_integers(self):
         self.assertEqual(Operator.sub(3, 2), 1)
-        self.assertEqual(Operator.sub(0, 5), -5)
-        self.assertEqual(Operator.sub(4, -5), 9)
+        self.assertEqual(Operator.sub(0, 0), 0)
+        self.assertEqual(Operator.sub(-4, -5), 1)
+        self.assertEqual(Operator.sub(0, -3), 3)
 
     # Defect Testing - floats
     def test_sub_floats(self):
-        self.assertRaises(InputException, Operator.sub, 10.5, 2)
+        self.assertRaises(InputException, Operator.sub, 10.5, 2.2)
     
     # Defect Testing - strings
     def test_sub_strings(self):
@@ -54,12 +56,13 @@ class TestMul(unittest.TestCase):
     # Validation Testing
     def test_mul_integers(self):
         self.assertEqual(Operator.mul(3, 2), 6)
-        self.assertEqual(Operator.mul(0, 5), 0)
-        self.assertEqual(Operator.mul(4, -5), -20)
+        self.assertEqual(Operator.mul(0, 0), 0)
+        self.assertEqual(Operator.mul(-4, -5), 20)
+        self.assertEqual(Operator.mul(0, -3), 0)
 
     # Defect Testing - floats
     def test_mul_floats(self):
-        self.assertRaises(InputException, Operator.mul, 10.5, 2)
+        self.assertRaises(InputException, Operator.mul, 10.5, 2.2)
     
     # Defect Testing -- strings
     def test_mul_strings(self):
@@ -72,6 +75,7 @@ class TestFact(unittest.TestCase):
 
     # Validation Testing
     def test_mul_integer(self):
+        self.assertEqual(Operator.factorial(5), 120)
         self.assertEqual(Operator.factorial(3), 6)
         self.assertEqual(Operator.factorial(0), 1)
 
