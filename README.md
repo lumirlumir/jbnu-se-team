@@ -16,9 +16,16 @@ Python3
 
 #### 1-3-1. 실습
 
+![practice-1](./docs/README/practice-1.jpg)
+![practice-2](./docs/README/practice-2.jpg)
+![practice-3](./docs/README/practice-3.jpg)
+![practice-4](./docs/README/practice-4.jpg)
+![practice-5](./docs/README/practice-5.jpg)
+![practice-6](./docs/README/practice-6.jpg)
+
 #### 1-3-2. 팀 프로젝트
 
-#### 1-3-2-1. 1번 과제
+##### 1-3-2-1. 1번 과제
 
 ![team-1-1](./docs/README/team-1-1.jpg)
 ![team-1-2](./docs/README/team-1-2.jpg)
@@ -31,7 +38,7 @@ Python3
 ![team-1-9](./docs/README/team-1-9.jpg)
 ![team-1-10](./docs/README/team-1-10.jpg)
 
-#### 1-3-2-2. 2, 3번 과제
+##### 1-3-2-2. 2, 3번 과제
 
 ![team-2-1](./docs/README/team-2-1.jpg)
 ![team-2-2](./docs/README/team-2-2.jpg)
